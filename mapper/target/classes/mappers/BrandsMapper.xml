@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lioch3cooh.glaciersmall.dao.BrandsDao">
+    <!--轮播图 操作mapper-->
+    <insert id="insertOneBrand" parameterType="Brands">
+        insert into brands (`name`, nameEn, logo, picture, `type`, `desc`, place)
+        values (#{name}, #{nameEn}, #{logo}, #{picture}, #{type}, #{desc}, #{place})
+    </insert>
+
+    <!--查询推荐品牌-->
+    <select id="listRecommendedBrand" resultType="Brands">
+        select id, `name`, nameEn, logo, picture, `type`, `desc`, place
+        from brands left join home_recommended_brands
+        on brands.id= home_recommended_brands.brandid
+        limit #{limit}
+    </select>
+</mapper>
