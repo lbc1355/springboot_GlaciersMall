@@ -65,4 +65,6 @@ public interface CategoryDao {
      */
     List<Properties> listPropsBySPropsId(@Param("salePropId") Integer salePropId);
 
+
+
 }

@@ -47,29 +47,32 @@ public class categoryServiceImpl implements CategoryService {
 
     @Override
     public VoResult findSubCategoryFilter(Integer categoryId) {
-        VoResult defaultVoRes = VoResultUnit.getDefaultVoRes();
+        VoResult voResult = VoResultUnit.getDefaultVoRes();
 
         Map<String, Object> result = new HashMap<>();
         Category category = categoryDao.getCategoryById(categoryId);
-        result.put("id", categoryId);
-        result.put("name", category.getName());
-        result.put("parentId", category.getParentId());
-        List<Brands> brands = new ArrayList<>();
-        result.put("brands", brands);
+        if (category != null) {
+            result.put("id", categoryId);
+            result.put("name", category.getName());
+            result.put("parentId", category.getParentId());
+            List<Brands> brands = new ArrayList<>();
+            result.put("brands", brands);
 
-        // 获取 分类ID下的 属性项
-        List<Map<String, Object>> saleproperties = new ArrayList<>();
-        List<SaleProperties> saleProperties = categoryDao.listSalePropsByCgyId(categoryId);
-        for (SaleProperties saleProperty : saleProperties) {
-            Map<String, Object> props = new HashMap<>();
-            props.put("id", saleProperty.getId());
-            props.put("name", saleProperty.getName());
-            List<Properties> properties = categoryDao.listPropsBySPropsId(saleProperty.getId());
-            props.put("properties", properties);
-            saleproperties.add(props);
+            // 获取 分类ID下的 属性项
+            List<Map<String, Object>> saleproperties = new ArrayList<>();
+            List<SaleProperties> saleProperties = categoryDao.listSalePropsByCgyId(categoryId);
+            for (SaleProperties saleProperty : saleProperties) {
+                Map<String, Object> props = new HashMap<>();
+                props.put("id", saleProperty.getId());
+                props.put("name", saleProperty.getName());
+                List<Properties> properties = categoryDao.listPropsBySPropsId(saleProperty.getId());
+                props.put("properties", properties);
+                saleproperties.add(props);
+            }
+            result.put("saleProperties", saleproperties);
+            voResult = VoResultUnit.getSuccessVoRes(voResult, result);
         }
-        result.put("saleProperties", saleproperties);
-        VoResult successVo = VoResultUnit.getSuccessVoRes(defaultVoRes, result);
-        return successVo;
+
+        return voResult;
     }
 }
