@@ -6,15 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
-public class Category {
+public class SaleProperties {
+
     private Integer id;
+
     private String name;
-    private String picture;
-    private Integer level;
-    private Integer parentId;
-//    private List<Category> children;
-//    private List<Goods> goods;
+
+    private String category_id;
 }

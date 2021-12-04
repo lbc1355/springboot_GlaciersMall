@@ -1,6 +1,7 @@
 package com.lioch3cooh.glaciersmall.service;
 
 import com.lioch3cooh.glaciersmall.entity.Category;
+import com.lioch3cooh.glaciersmall.vo.VoResult;
 
 
 import java.util.List;
@@ -27,4 +28,11 @@ public interface CategoryService {
      * 根据上级id查询分类
      */
     List<Category> listCategoryByParentId(Integer parentId);
+
+    /**
+     * 获取二级类目的筛选条件
+     * @param categoryId
+     * @return
+     */
+    VoResult findSubCategoryFilter(Integer categoryId);
 }

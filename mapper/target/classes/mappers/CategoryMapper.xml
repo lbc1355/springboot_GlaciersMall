@@ -31,5 +31,14 @@
         from category where name = #{name}
     </select>
 
+    <select id="listSalePropsByCgyId" resultType="SaleProperties">
+        select id ,name, category_id from sale_properties
+        where category_id = #{categoryId}
+    </select>
+    <select id="listPropsBySPropsId" resultType="Properties">
+        select id , name , sale_prop_id from properties
+        where sale_prop_id = #{salePropId}
+    </select>
+
 
 </mapper>

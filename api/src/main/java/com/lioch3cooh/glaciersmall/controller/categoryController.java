@@ -41,7 +41,7 @@ public class categoryController {
         Map<String, Object> result = new HashMap<>();
         //获取顶级分类
         Category category = categoryService.getCategoryById(id);
-        if (category != null){
+        if (category != null) {
             result.put("id", String.valueOf(category.getId()));
             result.put("name", category.getName());
             result.put("picture", category.getPicture());
@@ -65,5 +65,14 @@ public class categoryController {
             voResult.setCode(1);
         }
         return voResult;
+    }
+
+    /**
+     * 获取二级类目的筛选条件
+     */
+    @GetMapping("/sub/filter")
+    public VoResult findSubCategoryFilter(Integer id) {
+        VoResult subCategoryFilter = categoryService.findSubCategoryFilter(id);
+        return subCategoryFilter;
     }
 }
