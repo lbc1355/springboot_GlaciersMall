@@ -49,13 +49,29 @@
 
 
     <select id="listColumnGoods" resultType="com.lioch3cooh.glaciersmall.entity.Goods">
-        select  g.id, name, `desc`, `price`,  picture,  discount,  order_num, category_id
-        from category_recommend_goods c left join goods g on c.id = g.id
+        select g.id,
+               name,
+               `desc`,
+               `price`,
+               picture,
+               discount,
+               order_num,
+               category_id
+        from category_recommend_goods c
+                 left join goods g on c.id = g.id
     </select>
 
     <select id="listColumnGoodsByCgyId" resultType="com.lioch3cooh.glaciersmall.entity.Goods">
-        select  g.id, name, `desc`, `price`,  picture,  discount,  order_num, category_id
-        from category_recommend_goods c left join goods g on c.id = g.id
+        select g.id,
+               name,
+               `desc`,
+               `price`,
+               picture,
+               discount,
+               order_num,
+               category_id
+        from category_recommend_goods c
+                 left join goods g on c.id = g.id
         where category_id = #{categoryid}
     </select>
 
@@ -63,4 +79,35 @@
         insert into category_recommend_goods (id)
         values (#{id})
     </insert>
+
+    <select id="listGoodsByFilter" resultType="Goods">
+        select id,
+        name,
+        `desc`,
+        price,
+        picture,
+        discount,
+        order_num,
+        category_id
+        from
+        <if test="attrsLength != 0">
+            (select goods_sku.good_id
+            from (select sku_id
+            from sku_properties
+            where sku_properties.properties_id in
+            <foreach collection="attrs" item="attr" open="(" close=")" separator=", ">
+                #{attr.propertiesId}
+            </foreach>
+            group by sku_id
+            having count(properties_id) >= #{attrsLength} ) skuid
+            left join goods_sku on goods_sku.id = skuid.sku_id) goodid
+            left join goods on goodid.good_id = goods.id
+            where category_id = #{categoryId}
+        </if>
+        <if test="attrsLength == 0">
+            goods where category_id = #{categoryId}
+        </if>
+        limit #{page} , #{size}
+
+    </select>
 </mapper>

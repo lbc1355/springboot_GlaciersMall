@@ -35,10 +35,21 @@
         select id ,name, category_id from sale_properties
         where category_id = #{categoryId}
     </select>
+
     <select id="listPropsBySPropsId" resultType="Properties">
         select id , name , sale_prop_id from properties
         where sale_prop_id = #{salePropId}
     </select>
+
+
+<!--    <select id="">-->
+<!--        select c.* , properties.name from-->
+<!--            (select a.* , sp.properties_id  from-->
+<!--                (select  gk.id as skuid,  gk.name,  gk.good_id  ,  gk.price  from goods_sku gk  left join goods on gk.good_id = goods.id) a-->
+<!--                    left join sku_properties sp on a.skuid = sp.sku_id) c-->
+<!--                left join properties-->
+<!--                          on c.properties_id  =  properties.id-->
+<!--    </select>-->
 
 
 </mapper>

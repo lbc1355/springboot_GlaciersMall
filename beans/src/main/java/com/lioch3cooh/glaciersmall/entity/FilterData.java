@@ -11,10 +11,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class GoodsData {
+public class FilterData {
 
     private String brandId;
-    private String categoryId;
+    private Integer categoryId;
     private boolean inventory;
     private boolean onlyDiscount;
     private Integer page;

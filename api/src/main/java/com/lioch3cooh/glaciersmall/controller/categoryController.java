@@ -1,9 +1,8 @@
 package com.lioch3cooh.glaciersmall.controller;
 
-import com.lioch3cooh.glaciersmall.entity.Attrs;
 import com.lioch3cooh.glaciersmall.entity.Category;
+import com.lioch3cooh.glaciersmall.entity.FilterData;
 import com.lioch3cooh.glaciersmall.entity.Goods;
-import com.lioch3cooh.glaciersmall.entity.GoodsData;
 import com.lioch3cooh.glaciersmall.service.CategoryService;
 import com.lioch3cooh.glaciersmall.service.GoodsService;
 import com.lioch3cooh.glaciersmall.vo.VoResult;
@@ -82,9 +81,8 @@ public class categoryController {
      * 获取分类下的商品（带筛选条件）
      */
     @PostMapping("/goods/temporary")
-    public void findSubCategoryGoods(@RequestBody GoodsData goodsData) {
-        VoResult voResult = new VoResult();
-
-
+    public VoResult findSubCategoryGoods(@RequestBody FilterData filterData) {
+        VoResult subCategoryGoods = categoryService.findSubCategoryGoods(filterData);
+        return subCategoryGoods;
     }
 }

@@ -1,10 +1,9 @@
 package com.lioch3cooh.glaciersmall.service.serviceImpl;
 
 import com.lioch3cooh.glaciersmall.dao.CategoryDao;
-import com.lioch3cooh.glaciersmall.entity.Brands;
-import com.lioch3cooh.glaciersmall.entity.Category;
-import com.lioch3cooh.glaciersmall.entity.Properties;
-import com.lioch3cooh.glaciersmall.entity.SaleProperties;
+import com.lioch3cooh.glaciersmall.dao.GoodsDao;
+import com.lioch3cooh.glaciersmall.dao.PropertiesDao;
+import com.lioch3cooh.glaciersmall.entity.*;
 import com.lioch3cooh.glaciersmall.service.CategoryService;
 import com.lioch3cooh.glaciersmall.unity.VoResultUnit;
 import com.lioch3cooh.glaciersmall.vo.VoResult;
@@ -21,6 +20,12 @@ public class categoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private PropertiesDao propertiesDao;
+
+    @Autowired
+    private GoodsDao goodsDao;
 
     @Override
     public List<Category> listTopCategory() {
@@ -60,12 +65,12 @@ public class categoryServiceImpl implements CategoryService {
 
             // 获取 分类ID下的 属性项
             List<Map<String, Object>> saleproperties = new ArrayList<>();
-            List<SaleProperties> saleProperties = categoryDao.listSalePropsByCgyId(categoryId);
+            List<SaleProperties> saleProperties = propertiesDao.listSalePropsByCgyId(categoryId);
             for (SaleProperties saleProperty : saleProperties) {
                 Map<String, Object> props = new HashMap<>();
                 props.put("id", saleProperty.getId());
                 props.put("name", saleProperty.getName());
-                List<Properties> properties = categoryDao.listPropsBySPropsId(saleProperty.getId());
+                List<Properties> properties = propertiesDao.listPropsBySPropsId(saleProperty.getId());
                 props.put("properties", properties);
                 saleproperties.add(props);
             }
@@ -74,5 +79,26 @@ public class categoryServiceImpl implements CategoryService {
         }
 
         return voResult;
+    }
+
+    @Override
+    public VoResult findSubCategoryGoods(FilterData filterData) {
+
+        VoResult voRes = VoResultUnit.getDefaultVoRes();
+        List<Goods> goods = null;
+        if ( filterData.getCategoryId() != null) {
+            List<Attrs> attrs = filterData.getAttrs();
+            Integer page = (filterData.getPage() - 1) * filterData.getPageSize();
+            Integer size = filterData.getPageSize();
+            Integer attrslength = attrs == null ? 0 : attrs.size();
+            goods = goodsDao.listGoodsByFilter(attrs, attrslength, filterData.getCategoryId(), page, size);
+        }else{
+            return voRes;
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("items", goods);
+        voRes = VoResultUnit.getSuccessVoRes(voRes, result);
+        return voRes;
     }
 }

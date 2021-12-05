@@ -15,5 +15,5 @@ public class SaleProperties {
 
     private String name;
 
-    private String category_id;
+    private String categoryId;
 }

@@ -1,6 +1,8 @@
 package com.lioch3cooh.glaciersmall.dao;
 
+import com.lioch3cooh.glaciersmall.entity.Attrs;
 import com.lioch3cooh.glaciersmall.entity.Goods;
+import com.lioch3cooh.glaciersmall.entity.SaleProperties;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,14 +14,14 @@ public interface GoodsDao {
     int insertOneGood(Goods goods);
 
     /**
-     *根据分类id后获取物品
+     * 根据分类id后获取物品
      */
     List<Goods> listGoodByCgyId(@Param("categoryId") Integer CategoryId);
 
     /**
-     *  根据name获取物品
+     * 根据name获取物品
      */
-    Goods getGoodByName(@Param("name")String name);
+    Goods getGoodByName(@Param("name") String name);
 
     /**
      * 修改物品
@@ -41,4 +43,7 @@ public interface GoodsDao {
      * 专栏-插入推荐商品
      */
     int insertGoodToColumn(@Param("id") Integer id);
+
+
+    List<Goods> listGoodsByFilter(@Param("attrs") List<Attrs> attrs, Integer attrsLength, Integer categoryId,Integer page,Integer size);
 }

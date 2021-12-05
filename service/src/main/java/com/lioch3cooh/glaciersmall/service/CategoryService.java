@@ -1,6 +1,7 @@
 package com.lioch3cooh.glaciersmall.service;
 
 import com.lioch3cooh.glaciersmall.entity.Category;
+import com.lioch3cooh.glaciersmall.entity.FilterData;
 import com.lioch3cooh.glaciersmall.vo.VoResult;
 
 
@@ -35,4 +36,7 @@ public interface CategoryService {
      * @return
      */
     VoResult findSubCategoryFilter(Integer categoryId);
+
+
+    VoResult findSubCategoryGoods(FilterData goodsData);
 }
