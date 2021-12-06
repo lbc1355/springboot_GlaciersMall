@@ -1,9 +1,11 @@
 package com.lioch3cooh.glaciersmall;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.lioch3cooh.glaciersmall.dao.CategoryDao;
+import com.lioch3cooh.glaciersmall.dao.CityDao;
 import com.lioch3cooh.glaciersmall.dao.GoodsDao;
 import com.lioch3cooh.glaciersmall.entity.Goods;
 import com.lioch3cooh.glaciersmall.service.BrandsService;
@@ -29,6 +31,8 @@ public class springboottest {
     private HomeService homeService;
     @Autowired
     private CategoryDao categoryDao;
+    @Autowired
+    private CityDao cityDao;
 
     @Test
     public void httpTest() {
@@ -131,14 +135,64 @@ public class springboottest {
             List<Goods> goods = child.getGoods();
             for (Goods good : goods) {
                 Goods goodByName = goodsDao.getGoodByName(good.getName());
-                if (goodByName == null){
+                if (goodByName == null) {
                     System.out.println(good);
                     goodsDao.insertOneGood(good);
-                }else {
+                } else {
                     System.out.println(goodByName.getId());
                 }
 
             }
         }
     }
+
+    @Test
+    public void getCity() throws JsonProcessingException {
+//        String response = HttpRequest.get("https://yjy-oss-files.oss-cn-zhangjiakou.aliyuncs.com/tuxian/area.json").body();
+//        ObjectMapper mapper = new ObjectMapper();
+//        List<Region> cities = mapper.readValue(response, new TypeReference<List<Region>>() {
+//        });
+//
+//        com.lioch3cooh.glaciersmall.entity.Region c = null;
+//        for (Region c1 : cities) {
+//            // 省级
+//            c = new com.lioch3cooh.glaciersmall.entity.Region();
+//            c.setCode(c1.getCode());
+//            c.setLevel(c1.getLevel());
+//            c.setName(c1.getName());
+//            // 插入到数据库
+//            cityDao.insertOneRegion(c);
+//            List<Region> c2List = c1.getAreaList();
+//            // 市级
+//            for (Region c2 : c2List) {
+//                c.setCode(c2.getCode());
+//                c.setLevel(c2.getLevel());
+//                c.setName(c2.getName());
+//                c.setParentId(c1.getCode());
+//                com.lioch3cooh.glaciersmall.entity.Region oneCity = cityDao.getOneRegion(c.getCode());
+//                if (oneCity == null){
+//                    cityDao.insertOneRegion(c);
+//                }else{
+//                    System.out.println("已存在" + c);
+//                }
+//                // 插入到数据库
+//                List<Region> c3List = c2.getAreaList();
+//                // 县级
+//                for (Region c3 : c3List) {
+//                    c.setCode(c3.getCode());
+//                    c.setLevel(c3.getLevel());
+//                    c.setName(c3.getName());
+//                    c.setParentId(c2.getCode());
+//                    oneCity = cityDao.getOneRegion(c.getCode());
+//                    if (oneCity == null){
+//                        cityDao.insertOneRegion(c);
+//                    }else{
+//                        System.out.println("已存在" + c);
+//                    }
+//                }
+//            }
+
+    }
+
+
 }

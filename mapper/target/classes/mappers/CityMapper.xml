@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lioch3cooh.glaciersmall.dao.CityDao">
+
+
+    <insert id="insertOneRegion">
+        insert into city (code, `level`, `name`, parent_id)
+        values (#{city.code}, #{city.level}, #{city.name}, #{city.parentId})
+    </insert>
+
+    <select id="getOneRegion" resultType="Region">
+        select code, `level`, `name`, parent_id
+        from city
+        where code = #{code}
+    </select>
+
+    <select id="listProvince" resultType="Region">
+        select code, `level`, `name`, parent_id
+        from city
+        where `level` = 1
+    </select>
+
+
+    <select id="listCities" resultType="Region">
+        select code, `level`, `name`, parent_id
+        from city
+        where `level` = 2
+    </select>
+
+    <select id="listCounty" resultType="Region">
+        select code, `level`, `name`, parent_id
+        from city
+        where `level` = 3
+    </select>
+
+    <select id="listRegionsByParId" resultType="Region">
+        select code, `level`, `name`, parent_id
+        from city
+        where parentId = #{parentId}
+    </select>
+
+
+
+</mapper>
