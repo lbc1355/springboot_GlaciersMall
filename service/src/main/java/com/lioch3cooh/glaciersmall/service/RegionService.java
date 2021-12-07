@@ -1,11 +1,11 @@
 package com.lioch3cooh.glaciersmall.service;
 
 import com.lioch3cooh.glaciersmall.entity.Region;
-import com.lioch3cooh.glaciersmall.vo.VoCity;
+import com.lioch3cooh.glaciersmall.entity.vo.VoRegion;
 
 import java.util.List;
 
-public interface CityService {
+public interface RegionService {
     int insertOneRegion(Region city);
 
     Region getOneRegion(Integer code);
@@ -15,6 +15,6 @@ public interface CityService {
      * 获取全部 省市县
      * @return
      */
-    List<VoCity<Region>> listAllCity();
+    List<VoRegion<Region>> listAllCity();
 
 }

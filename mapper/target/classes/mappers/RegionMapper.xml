@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lioch3cooh.glaciersmall.dao.CityDao">
+<mapper namespace="com.lioch3cooh.glaciersmall.dao.RegionDao">
 
 
     <insert id="insertOneRegion">
@@ -19,20 +19,20 @@
     <select id="listProvince" resultType="Region">
         select code, `level`, `name`, parent_id
         from city
-        where `level` = 1
+        where `level` = 0
     </select>
 
 
     <select id="listCities" resultType="Region">
         select code, `level`, `name`, parent_id
         from city
-        where `level` = 2
+        where `level` = 1
     </select>
 
     <select id="listCounty" resultType="Region">
         select code, `level`, `name`, parent_id
         from city
-        where `level` = 3
+        where `level` = 2
     </select>
 
     <select id="listRegionsByParId" resultType="Region">
@@ -41,6 +41,17 @@
         where parentId = #{parentId}
     </select>
 
+
+    <select id="listVoRegionProvince" resultType="com.lioch3cooh.glaciersmall.entity.vo.VoRegion">
+        select code, `level`, `name`
+        from city
+        where `level` = 0
+    </select>
+    <select id="listVoRegionsByParId" resultType="com.lioch3cooh.glaciersmall.entity.vo.VoRegion">
+        select code, `level`, `name`
+        from city
+        where parent_id = #{parentId}
+    </select>
 
 
 </mapper>

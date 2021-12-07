@@ -1,11 +1,10 @@
 package com.lioch3cooh.glaciersmall;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.lioch3cooh.glaciersmall.dao.CategoryDao;
-import com.lioch3cooh.glaciersmall.dao.CityDao;
+import com.lioch3cooh.glaciersmall.dao.RegionDao;
 import com.lioch3cooh.glaciersmall.dao.GoodsDao;
 import com.lioch3cooh.glaciersmall.entity.Goods;
 import com.lioch3cooh.glaciersmall.service.BrandsService;
@@ -32,7 +31,7 @@ public class springboottest {
     @Autowired
     private CategoryDao categoryDao;
     @Autowired
-    private CityDao cityDao;
+    private RegionDao cityDao;
 
     @Test
     public void httpTest() {

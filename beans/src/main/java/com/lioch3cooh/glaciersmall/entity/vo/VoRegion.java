@@ -1,4 +1,4 @@
-package com.lioch3cooh.glaciersmall.vo;
+package com.lioch3cooh.glaciersmall.entity.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class VoCity<T> {
+public class VoRegion<T> {
     private Integer code;
     private Integer level;
     private String name;
