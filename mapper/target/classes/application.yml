@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/glaciershopdb?characterEncodeing=utf-8
+      username: root
+      password: 123
+
+mybatis:
+  mapper-locations: classpath:mappers/*Mapper.xml
+  type-aliases-package: com.lioch3cooh.glaciersmall.entity
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰命名策略
+logging:
+  level:
+    com.lioch3cooh.glaciersmall.dao.GoodsDao: DEBUG

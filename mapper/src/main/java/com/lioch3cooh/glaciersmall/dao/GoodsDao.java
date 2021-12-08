@@ -23,6 +23,8 @@ public interface GoodsDao {
      */
     Goods getGoodByName(@Param("name") String name);
 
+    Goods getGoodById(@Param("id") Integer id);
+
     /**
      * 修改物品
      */
@@ -44,6 +46,17 @@ public interface GoodsDao {
      */
     int insertGoodToColumn(@Param("id") Integer id);
 
+    /**
+     * 根据筛选条件 获取商品集合
+     * @param attrs  条件集合
+     * @param attrsLength 条件长度
+     * @param categoryId 分类ID
+     * @param page 页数
+     * @param size 页大小
+     * @return
+     */
+    List<Goods> listGoodsByFilter(@Param("attrs") List<Attrs> attrs, Integer attrsLength,
+                                  Integer categoryId,Integer page,Integer size);
 
-    List<Goods> listGoodsByFilter(@Param("attrs") List<Attrs> attrs, Integer attrsLength, Integer categoryId,Integer page,Integer size);
+
 }

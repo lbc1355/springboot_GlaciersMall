@@ -1,5 +1,6 @@
 package com.lioch3cooh.glaciersmall.entity.vo;
 
+import com.lioch3cooh.glaciersmall.entity.Obeans.ProductSkusSpecs;
 import com.lioch3cooh.glaciersmall.entity.Specifications;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,5 @@ public class VoSku {
     private Double price;
     private Double oldPrice;
     private Integer inventory;
-    List<Specifications> specs;
+    List<ProductSkusSpecs> specs;
 }

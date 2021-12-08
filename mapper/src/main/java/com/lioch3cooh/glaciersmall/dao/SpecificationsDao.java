@@ -1,5 +1,6 @@
 package com.lioch3cooh.glaciersmall.dao;
 
+import com.lioch3cooh.glaciersmall.entity.Obeans.ProductSkusSpecs;
 import com.lioch3cooh.glaciersmall.entity.SpecVaule;
 import com.lioch3cooh.glaciersmall.entity.Specifications;
 import org.apache.ibatis.annotations.Mapper;
@@ -21,4 +22,10 @@ public interface SpecificationsDao {
      */
 
     List<SpecVaule> listSpecValue(@Param("specId") Integer specId);
+
+    /**
+     * 根据skuid 获取sku属性集合
+     */
+    List<ProductSkusSpecs> listSkuSpecs(Integer skuId);
+
 }

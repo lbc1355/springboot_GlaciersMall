@@ -2,6 +2,7 @@ package com.lioch3cooh.glaciersmall.unity;
 
 import com.lioch3cooh.glaciersmall.vo.VoResult;
 
+import java.util.List;
 import java.util.Map;
 
 public class VoResultUnit {
@@ -10,6 +11,21 @@ public class VoResultUnit {
     }
 
     public static VoResult getSuccessVoRes(VoResult defaultVoRes, Map<String, Object> result) {
+        defaultVoRes.setResult(result);
+        defaultVoRes.setMsg("查询成功");
+        defaultVoRes.setCode(1);
+        return defaultVoRes;
+    }
+
+    public static VoResult getSuccessVoResList(VoResult defaultVoRes, List result) {
+        defaultVoRes.setResult(result);
+        defaultVoRes.setMsg("查询成功");
+        defaultVoRes.setCode(1);
+        return defaultVoRes;
+    }
+
+
+    public static VoResult getSuccessVoResObject(VoResult defaultVoRes, Object result) {
         defaultVoRes.setResult(result);
         defaultVoRes.setMsg("查询成功");
         defaultVoRes.setCode(1);

@@ -14,9 +14,9 @@ public class Goods {
     private Integer id;
     private String name;
     private String desc;
-    private String price;
+    private Double price;
     private String picture;
-    private String discount;
+    private Double discount;
     private int orderNum;
     private int categoryId;
 }

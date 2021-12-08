@@ -34,7 +34,7 @@ public interface CategoryDao {
     List<Category> getTwoCategory();
 
     /**
-     * 根据上级id查询分类
+     * 查询父ID 的 子分类
      *
      * @param parentId
      * @return
@@ -48,6 +48,14 @@ public interface CategoryDao {
      * @return
      */
     Category getCategoryByName(@Param("name") String name);
+
+
+    /**
+     * 根据父ID 查找父分类
+     * @param parentId
+     * @return
+     */
+    Category getCategoryByParentId(@Param("parentId") Integer parentId);
 
 
 
