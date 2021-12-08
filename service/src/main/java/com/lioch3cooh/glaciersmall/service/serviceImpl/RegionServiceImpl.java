@@ -4,11 +4,8 @@ import com.lioch3cooh.glaciersmall.dao.RegionDao;
 import com.lioch3cooh.glaciersmall.entity.Region;
 import com.lioch3cooh.glaciersmall.service.RegionService;
 import com.lioch3cooh.glaciersmall.entity.vo.VoRegion;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
