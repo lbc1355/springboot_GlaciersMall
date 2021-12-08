@@ -8,5 +8,5 @@ public interface GoodSkuDao {
     /**
      * 获取一个SPU的SKU
      */
-    VoSku listVoSKU(Integer goods_id);
+//    VoSku listVoSKU(Integer goods_id);
 }

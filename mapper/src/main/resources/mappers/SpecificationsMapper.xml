@@ -7,11 +7,14 @@
         select specifications.spec_id, specifications.spec_name, specifications.good_id
         from specifications
                  left join goods on specifications.good_id = goods.id
-        where good_id = #{goodId}
+        where good_id =#{goodId}
     </select>
+
+
     <select id="listSpecValue" resultType="SpecVaule">
         select *
         from spec_value sp
         where spec_id = #{specId}
     </select>
+
 </mapper>

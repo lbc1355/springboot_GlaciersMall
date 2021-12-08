@@ -21,7 +21,6 @@ public class ProductController {
 
     @GetMapping("")
     public VoProduct getVoProduct(Integer id){
-        System.out.println(id);
         VoProduct voProduct = goodSkuService.getVoProduct(id);
         return voProduct;
     }

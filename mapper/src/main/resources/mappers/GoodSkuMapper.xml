@@ -3,7 +3,7 @@
 <mapper namespace="com.lioch3cooh.glaciersmall.dao.GoodSkuDao">
 
 
-    <select id="listVoSKU" resultType="com.lioch3cooh.glaciersmall.entity.vo.VoSku">
-
-    </select>
+<!--    <select id="listVoSKU" resultType="com.lioch3cooh.glaciersmall.entity.vo.VoSku">-->
+<!--    -->
+<!--    </select>-->
 </mapper>
