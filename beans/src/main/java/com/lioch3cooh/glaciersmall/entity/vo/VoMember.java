@@ -1,4 +1,4 @@
-package com.lioch3cooh.glaciersmall.entity;
+package com.lioch3cooh.glaciersmall.entity.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Members {
-
+public class VoMember {
     private String id;
     private String account;
     private String password;
@@ -24,5 +23,5 @@ public class Members {
     private String source;
     private String avatar;
     private String gender;
-
+    private String token;
 }

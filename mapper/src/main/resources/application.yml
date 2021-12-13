@@ -6,6 +6,15 @@ spring:
       url: jdbc:mysql://localhost:3306/glaciershopdb?characterEncodeing=utf-8
       username: root
       password: 123
+  redis:
+    host: 114.215.172.169
+    port: 6379
+    timeout: 1000
+    jedis:
+      pool:
+        min-idle: 5
+        max-idle: 10
+        max-wait: -1
 
 mybatis:
   mapper-locations: classpath:mappers/*Mapper.xml
@@ -15,3 +24,4 @@ mybatis:
 logging:
   level:
     com.lioch3cooh.glaciersmall.dao.GoodsDao: DEBUG
+

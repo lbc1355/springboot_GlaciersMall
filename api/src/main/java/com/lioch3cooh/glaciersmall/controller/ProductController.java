@@ -1,6 +1,6 @@
 package com.lioch3cooh.glaciersmall.controller;
 
-import com.lioch3cooh.glaciersmall.entity.vo.VoProduct;
+
 import com.lioch3cooh.glaciersmall.service.GoodSkuService;
 import com.lioch3cooh.glaciersmall.vo.VoResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,6 @@ public class ProductController {
     @GetMapping("")
     public VoResult getVoProduct(Integer id) {
         VoResult voResult = goodSkuService.getVoProduct(id);
-
         return voResult;
     }
 }

@@ -3,8 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lioch3cooh.glaciersmall.dao.MembersDao">
-    <select id="getAllMembers" resultType="members" >
+    <select id="getAllMembers" resultType="members">
         select memberId, username, passwrod, phonenumber, mail
         from members
+    </select>
+
+    <select id="loginAccount" resultType="com.lioch3cooh.glaciersmall.entity.vo.VoMember">
+        select account,
+               avatar,
+               birthday,
+               cityCode,
+               gender,
+               id,
+               mobile,
+               profession,
+               provinceCode,
+               nickname,
+               password
+        from user_member
+        where account = #{account}
     </select>
 </mapper>

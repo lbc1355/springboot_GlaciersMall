@@ -3,6 +3,8 @@ package com.lioch3cooh.glaciersmall;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.kevinsawicki.http.HttpRequest;
+import com.github.wxpay.sdk.WXPay;
+import com.github.wxpay.sdk.WXPayConfig;
 import com.lioch3cooh.glaciersmall.dao.CategoryDao;
 import com.lioch3cooh.glaciersmall.dao.RegionDao;
 import com.lioch3cooh.glaciersmall.dao.GoodsDao;
@@ -10,12 +12,18 @@ import com.lioch3cooh.glaciersmall.entity.Goods;
 import com.lioch3cooh.glaciersmall.service.BrandsService;
 import com.lioch3cooh.glaciersmall.service.HomeService;
 import com.lioch3cooh.glaciersmall.service.SpecialService;
+import com.lioch3cooh.glaciersmall.unity.SnowFlake;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 
 
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @SpringBootTest
 public class springboottest {
@@ -32,6 +40,9 @@ public class springboottest {
     private CategoryDao categoryDao;
     @Autowired
     private RegionDao cityDao;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Test
     public void httpTest() {
@@ -190,6 +201,17 @@ public class springboottest {
 //                    }
 //                }
 //            }
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void SnowFlakeTest() {
+        //连接redis
+        Object name = redisTemplate.opsForValue().get("name");
+        System.out.println(name);
 
     }
 
