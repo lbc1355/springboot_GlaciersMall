@@ -13,6 +13,10 @@ import com.lioch3cooh.glaciersmall.service.BrandsService;
 import com.lioch3cooh.glaciersmall.service.HomeService;
 import com.lioch3cooh.glaciersmall.service.SpecialService;
 import com.lioch3cooh.glaciersmall.unity.SnowFlake;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,10 +24,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 public class springboottest {
@@ -208,10 +212,13 @@ public class springboottest {
      *
      */
     @Test
-    public void SnowFlakeTest() {
-        //连接redis
-        Object name = redisTemplate.opsForValue().get("name");
-        System.out.println(name);
+    public void SnowFlakeTest() throws ParseException {
+      
+
+        String testCashTime = (String) redisTemplate.opsForValue().get("13522767896:LoginCode");
+
+        System.out.println(testCashTime);
+
 
     }
 

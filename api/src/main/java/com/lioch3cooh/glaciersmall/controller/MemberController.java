@@ -1,8 +1,8 @@
 package com.lioch3cooh.glaciersmall.controller;
 
 
-import com.github.kevinsawicki.http.HttpRequest;
 import com.lioch3cooh.glaciersmall.entity.Members;
+import com.lioch3cooh.glaciersmall.entity.RequestBodyEnity.RBEMobileLogin;
 import com.lioch3cooh.glaciersmall.entity.vo.VoMember;
 import com.lioch3cooh.glaciersmall.service.MembersService;
 import com.lioch3cooh.glaciersmall.unity.VoResultUnit;
@@ -54,8 +54,67 @@ public class MemberController {
         return responseEntity;
     }
 
+    /**
+     * 发送验证码
+     *
+     * @param mobile
+     */
     @GetMapping("/login/code")
-    public void userMobileLoginMsg(@RequestParam("mobile") String mobile) {
+    public ResponseEntity userMobileLoginMsg(@RequestParam("mobile") String mobile) {
+        // 登录成功容器
+        VoResult defaultVoRes = VoResultUnit.getDefaultVoRes();
+        // 响应
+        ResponseEntity responseEntity = null;
+        // 错误响应容器
+        Map<String, Object> map = new HashMap<>();
 
+        int flag = membersService.userMobileLoginMsg(mobile);
+
+        // 发送成功
+        if (flag == 2) {
+            defaultVoRes = VoResultUnit.getSuccessVoRes(defaultVoRes, null);
+            responseEntity = new ResponseEntity(defaultVoRes, HttpStatus.OK);
+        } else if (flag == 1) {
+            map.put("code", "17004");
+            map.put("message", "验证码服务繁忙，请稍候再试");
+            responseEntity = new ResponseEntity(map, HttpStatus.BAD_REQUEST);
+        } else {
+            map.put("code", "17001");
+            map.put("message", "用户不存在");
+            responseEntity = new ResponseEntity(map, HttpStatus.BAD_REQUEST);
+        }
+        return responseEntity;
+    }
+
+    @PostMapping("/login/code")
+    public ResponseEntity userMobileLogin(@RequestBody RBEMobileLogin rbeMobileLogin) {
+        // 登录成功容器
+        VoResult defaultVoRes = VoResultUnit.getDefaultVoRes();
+        // 响应
+        ResponseEntity responseEntity = null;
+        // 错误响应容器
+        Map<String, Object> map = new HashMap<>();
+
+        // 验证码是否正确
+        VoMember member = membersService.userMobileLogin(rbeMobileLogin);
+        if (member != null) {
+            // 账户不为空
+            if (member.getId() != null && !"".equals(member.getId())) {
+                defaultVoRes = VoResultUnit.getSuccessVoResObject(defaultVoRes, member);
+                responseEntity = new ResponseEntity(defaultVoRes, HttpStatus.OK);
+            }else{
+                // 验证码错误
+                map.put("code", "17003");
+                map.put("message", "验证码错误");
+                responseEntity = new ResponseEntity(map, HttpStatus.BAD_REQUEST);
+            }
+        }else{
+            // 验证码已过期，或者根本没有发送过
+            map.put("code", "17003");
+            map.put("message", "验证码失效");
+            responseEntity = new ResponseEntity(map, HttpStatus.BAD_REQUEST);
+        }
+
+        return responseEntity;
     }
 }

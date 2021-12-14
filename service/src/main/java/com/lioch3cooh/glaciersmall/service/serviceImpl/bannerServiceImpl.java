@@ -17,6 +17,7 @@ public class bannerServiceImpl implements BannerService {
     @Override
     public List<Banner> getBannerContext() {
         List<Banner> bannerContext = bannerDao.getBannerContext();
+
         return bannerContext;
     }
 }

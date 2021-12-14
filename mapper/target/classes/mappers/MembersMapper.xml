@@ -23,4 +23,20 @@
         from user_member
         where account = #{account}
     </select>
+
+    <select id="getMemberByMobile" resultType="Members">
+        select account,
+               avatar,
+               birthday,
+               cityCode,
+               gender,
+               id,
+               mobile,
+               profession,
+               provinceCode,
+               nickname,
+               password
+        from user_member
+        where mobile = #{mobile}
+    </select>
 </mapper>
