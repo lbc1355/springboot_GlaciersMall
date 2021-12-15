@@ -48,15 +48,18 @@ public interface GoodsDao {
 
     /**
      * 根据筛选条件 获取商品集合
-     * @param attrs  条件集合
+     *
+     * @param attrs       条件集合
      * @param attrsLength 条件长度
-     * @param categoryId 分类ID
-     * @param page 页数
-     * @param size 页大小
+     * @param categoryId  分类ID
+     * @param page        页数
+     * @param size        页大小
      * @return
      */
     List<Goods> listGoodsByFilter(@Param("attrs") List<Attrs> attrs, Integer attrsLength,
-                                  Integer categoryId,Integer page,Integer size);
+                                  Integer categoryId, Integer page, Integer size);
 
+
+    Goods getGoodsBySkuId(@Param("skuId") Integer skuId);
 
 }

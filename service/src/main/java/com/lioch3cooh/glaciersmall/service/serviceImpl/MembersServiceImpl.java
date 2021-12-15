@@ -50,7 +50,9 @@ public class MembersServiceImpl implements MembersService {
             // 如果密码正确
             if (password.equals(member.getPassword())) {
                 // token
-                Map<String, Object> data = new HashMap<>();
+                Map<String, Object> result = new HashMap<>();
+                result.put("memberId",member.getId());
+
                 JwtBuilder builder = Jwts.builder();
                 String token = builder.setSubject(account)
                         // 设置token生成日期
@@ -58,7 +60,7 @@ public class MembersServiceImpl implements MembersService {
                         //设置用户ID 为tokenID
                         .setId(member.getId())
                         // 存放其他信息
-                        .setClaims(data)
+                        .setClaims(result)
                         // 一天后过期
                         .setExpiration(new Date(System.currentTimeMillis() + (1000 * 60 * 60 * 24)))
                         .signWith(SignatureAlgorithm.HS256, "lioch3cooh")
@@ -128,6 +130,8 @@ public class MembersServiceImpl implements MembersService {
 
                 // token
                 Map<String, Object> result = new HashMap<>();
+                result.put("memberId",member.getId());
+
                 JwtBuilder builder = Jwts.builder();
                 String token = builder.setSubject(member.getAccount())
                         // 设置token生成日期

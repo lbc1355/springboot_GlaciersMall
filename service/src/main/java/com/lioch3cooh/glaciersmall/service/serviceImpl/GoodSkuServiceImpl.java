@@ -8,6 +8,7 @@ import com.lioch3cooh.glaciersmall.entity.Category;
 import com.lioch3cooh.glaciersmall.entity.Goods;
 import com.lioch3cooh.glaciersmall.entity.Obeans.ProductSkusSpecs;
 import com.lioch3cooh.glaciersmall.entity.Obeans.ProductSpecs;
+import com.lioch3cooh.glaciersmall.entity.Obeans.SkuStatus;
 import com.lioch3cooh.glaciersmall.entity.SpecVaule;
 import com.lioch3cooh.glaciersmall.entity.Specifications;
 import com.lioch3cooh.glaciersmall.entity.vo.VoProduct;
@@ -74,6 +75,49 @@ public class GoodSkuServiceImpl implements GoodSkuService {
 
         return defaultVoRes;
     }
+
+    @Override
+    public VoResult getSkuStatus(Integer skuId) {
+        VoResult defaultVoRes = VoResultUnit.getDefaultVoRes();
+
+        SkuStatus skuStatus = goodSkuDao.getSkuStatus(skuId);
+        Map map = new HashMap();
+
+        if (skuStatus != null) {
+            map.put("nowPrice", skuStatus.getNowPrice());
+            map.put("oldPrice", skuStatus.getOldPrice());
+            map.put("stock", skuStatus.getStock());
+            map.put("discount", skuStatus.getDiscount());
+            map.put("isEffective", skuStatus.getIsEffective() == 0 ? false : true);
+        } else {
+            map.put("nowPrice", null);
+            map.put("oldPrice", null);
+            map.put("stock", null);
+            map.put("discount", null);
+            map.put("isEffective", null);
+        }
+
+        defaultVoRes = VoResultUnit.getSuccessVoRes(defaultVoRes, map);
+
+        return defaultVoRes;
+    }
+
+    @Override
+    public VoResult getGoodsSku(Integer skuId) {
+
+        VoResult defaultVoRes = VoResultUnit.getDefaultVoRes();
+
+        Goods goodsBySkuId = goodsDao.getGoodsBySkuId(skuId);
+        List<VoSpecs> specs = getProductSpecs(goodsBySkuId.getId());
+        List<VoSku> skus = listProductSkus(goodsBySkuId.getId());
+        Map map = new HashMap();
+        map.put("specs", specs);
+        map.put("skus", skus);
+
+        defaultVoRes = VoResultUnit.getSuccessVoRes(defaultVoRes, map);
+        return defaultVoRes;
+    }
+
 
     private List<VoSku> listProductSkus(Integer goodId) {
         List<VoSku> voSkus = goodSkuDao.listVoSKU(goodId);

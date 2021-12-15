@@ -124,4 +124,16 @@
         from goods
         where id = #{id}
     </select>
+    <select id="getGoodsBySkuId" resultType="com.lioch3cooh.glaciersmall.entity.Goods">
+        select id,
+               name,
+               `desc`,
+               price,
+               picture,
+               discount,
+               order_num,
+               category_id
+        from goods
+        where id = (select good_id from goods_sku where id = #{skuId})
+    </select>
 </mapper>

@@ -9,4 +9,35 @@
                  left join goods on gs.good_id = goods.id
         where goods.id = #{goodsId}
     </select>
+
+
+    <resultMap id="skuStatus" type="com.lioch3cooh.glaciersmall.entity.Obeans.SkuStatus">
+        <result property="nowPrice" column="price"/>
+        <result property="oldPrice" column="old_price"/>
+        <result property="stock" column="inventory"/>
+        <result property="discount" column="discount"/>
+        <result property="isEffective" column="is_effective"/>
+    </resultMap>
+    <select id="getSkuStatus" resultType="com.lioch3cooh.glaciersmall.entity.Obeans.SkuStatus" resultMap="skuStatus">
+        select price,
+               old_price,
+               inventory,
+               is_effective,
+               discount
+        from goods_sku
+        where id = #{skuId}
+    </select>
+
+    <select id="querySkuBySkuId" resultType="Sku">
+        select id,
+               name,
+               good_id,
+               price,
+               old_price,
+               inventory,
+               is_effective,
+               discount
+        from goods_sku
+        where id = #{skuId}
+    </select>
 </mapper>

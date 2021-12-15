@@ -19,7 +19,7 @@ import java.util.Map;
 @Controller
 @CrossOrigin
 @ResponseBody
-public class MemberController {
+public class LoginController {
     @Autowired
     private MembersService membersService;
 

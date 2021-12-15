@@ -22,6 +22,7 @@
         <result column="spec_name" property="name"></result>
         <result column="spec_val_name" property="valueName"></result>
     </resultMap>
+
     <select id="listSkuSpecs" resultType="com.lioch3cooh.glaciersmall.entity.Obeans.ProductSkusSpecs"
             resultMap="ProductSkusSpecs">
         select specifications.spec_name, b.spec_val_name
