@@ -19,7 +19,7 @@ import java.util.Map;
 @RequestMapping("/category")
 @ResponseBody
 @Controller
-public class categoryController {
+public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;

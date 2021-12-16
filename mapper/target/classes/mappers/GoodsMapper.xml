@@ -124,7 +124,7 @@
         from goods
         where id = #{id}
     </select>
-    <select id="getGoodsBySkuId" resultType="com.lioch3cooh.glaciersmall.entity.Goods">
+    <select id="getGoodsBySkuId" resultType="Goods">
         select id,
                name,
                `desc`,

@@ -2,11 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lioch3cooh.glaciersmall.dao.CartDao">
 
+
     <select id="listCart" resultType="Cart">
         select sku_id,
                selected,
                price,
-               count,
+               `count`,
                attrs_text,
                member_id
         from cart
@@ -38,8 +39,19 @@
             price      = #{cart.price},
             `count`    = #{cart.count},
             attrs_text = #{cart.attrsText}
-        where member_id = #{cart.memberId}
+        where member_id = #{cart.memberId} and sku_id = #{cart.skuId}
     </update>
+
+    <delete id="deleteCart">
+
+        delete from cart where sku_id in
+        (
+        <foreach collection="skuIds.ids" item="skuId" separator=",">
+            #{skuId}
+        </foreach>
+        )
+        and member_id = #{memberId}
+    </delete>
 
 
 </mapper>

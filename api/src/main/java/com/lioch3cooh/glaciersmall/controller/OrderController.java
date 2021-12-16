@@ -15,7 +15,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/order")
 @ResponseBody
-public class orderController {
+public class OrderController {
 
     @GetMapping("/pay")
     public void PaySuccess() {

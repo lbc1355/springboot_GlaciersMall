@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface CartDao {
@@ -33,4 +34,7 @@ public interface CartDao {
     int insertCart(@Param("cart") Cart cart);
 
     int updateCart(@Param("cart") Cart cart);
+
+    void deleteCart(@Param("skuIds") Map<String, List<Integer>> ids,
+                    @Param("memberId") String memberId);
 }

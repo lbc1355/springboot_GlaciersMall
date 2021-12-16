@@ -102,13 +102,13 @@ public class LoginController {
             if (member.getId() != null && !"".equals(member.getId())) {
                 defaultVoRes = VoResultUnit.getSuccessVoResObject(defaultVoRes, member);
                 responseEntity = new ResponseEntity(defaultVoRes, HttpStatus.OK);
-            }else{
+            } else {
                 // 验证码错误
                 map.put("code", "17003");
                 map.put("message", "验证码错误");
                 responseEntity = new ResponseEntity(map, HttpStatus.BAD_REQUEST);
             }
-        }else{
+        } else {
             // 验证码已过期，或者根本没有发送过
             map.put("code", "17003");
             map.put("message", "验证码失效");

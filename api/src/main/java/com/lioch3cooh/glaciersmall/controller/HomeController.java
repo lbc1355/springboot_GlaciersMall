@@ -13,7 +13,7 @@ import java.util.*;
 @Controller
 @RequestMapping("/home")
 @ResponseBody
-public class homeController {
+public class HomeController {
 
     @Autowired
     private CategoryService categoryService;
