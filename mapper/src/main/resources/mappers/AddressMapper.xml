@@ -19,4 +19,33 @@
         from user_addresses
         where member_id = #{memberId}
     </select>
+
+    <insert id="insertAddress" useGeneratedKeys="true" keyProperty="id">
+        insert into user_addresses (member_id, receiver, contact, full_location, address, postal_code, address_tags,
+                                    is_default, province_code, city_code, county_code)
+        values (#{userAddresses.memberId}, #{userAddresses.receiver}, #{userAddresses.contact},
+                #{userAddresses.fullLocation}, #{userAddresses.address}, #{userAddresses.postalCode},
+                #{userAddresses.addressTags},
+                #{userAddresses.isDefault}, #{userAddresses.provinceCode}, #{userAddresses.cityCode},
+                #{userAddresses.countyCode})
+    </insert>
+
+
+    <update id="updateAddress">
+        update user_addresses
+        set member_id     = #{addresses.memberId},
+            receiver      = #{addresses.receiver},
+            contact       = #{addresses.contact},
+            full_location = #{addresses.fullLocation},
+            address= #{addresses.address},
+            postal_code   = #{addresses.postalCode},
+            address_tags  = #{addresses.addressTags},
+            is_default    = #{addresses.isDefault},
+            province_code = #{addresses.provinceCode},
+            city_code     = #{addresses.cityCode},
+            county_code   = #{addresses.countyCode}
+        where id = #{addresses.id}
+    </update>
+
+
 </mapper>

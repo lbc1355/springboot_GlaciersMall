@@ -1,7 +1,10 @@
 package com.lioch3cooh.glaciersmall.controller;
 
 
+import com.lioch3cooh.glaciersmall.dao.AddressDao;
 import com.lioch3cooh.glaciersmall.entity.RequestBodyEnity.MergeCart;
+import com.lioch3cooh.glaciersmall.entity.UserAddresses;
+import com.lioch3cooh.glaciersmall.service.AddressService;
 import com.lioch3cooh.glaciersmall.service.CartService;
 import com.lioch3cooh.glaciersmall.service.OrderService;
 import com.lioch3cooh.glaciersmall.vo.VoResult;
@@ -18,6 +21,9 @@ public class MemberControll {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private AddressService addressService;
 
     /**
      * 用户登录时 将上传过来的本地购物车合并到购物车表中
@@ -115,11 +121,46 @@ public class MemberControll {
 
 
     /**
-     * 生成订单
+     * 订单 -填写订单
+     *
      * @return
      */
     @GetMapping("/order/pre")
     public VoResult createOrder(@RequestAttribute("memberId") String memberId) {
         return orderService.createOrder(memberId);
     }
+
+
+
+
+    /* 这里是地址业务 */
+
+    /**
+     * 添加地址
+     *
+     * @param memberId
+     * @return
+     */
+    @PostMapping("/address")
+    public VoResult addAddress(@RequestBody UserAddresses userAddresses,
+                               @RequestAttribute("memberId") String memberId) {
+        userAddresses.setMemberId(memberId);
+
+        return addressService.addAddress(userAddresses);
+    }
+
+    /**
+     * 修改用户地址
+     *
+     * @return
+     */
+    @PutMapping("/address/{addressId}")
+    public VoResult editAddress(@RequestBody UserAddresses userAddresses,
+                                @PathVariable("addressId") Integer id,
+                                @RequestAttribute("memberId") String memberId) {
+
+
+        return addressService.updateAddress(userAddresses);
+    }
+
 }

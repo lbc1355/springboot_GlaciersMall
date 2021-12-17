@@ -4,7 +4,7 @@ import com.lioch3cooh.glaciersmall.vo.VoResult;
 
 public interface OrderService {
     /**
-     * 生成订单
+     * 填写订单
      * @param memberId
      * @return
      */

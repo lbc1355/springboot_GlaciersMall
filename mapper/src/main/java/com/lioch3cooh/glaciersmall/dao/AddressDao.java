@@ -12,4 +12,7 @@ public interface AddressDao {
 
     List<UserAddresses> listAddress(@Param("memberId") String memberId);
 
+    int insertAddress(@Param("userAddresses") UserAddresses userAddresses);
+
+    int updateAddress(@Param("addresses") UserAddresses addresses);
 }

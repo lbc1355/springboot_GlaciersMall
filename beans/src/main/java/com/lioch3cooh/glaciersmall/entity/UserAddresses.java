@@ -22,5 +22,6 @@ public class UserAddresses {
     private String postalCode;
     private String provinceCode;
     private String receiver;
+    private String memberId;
 
 }

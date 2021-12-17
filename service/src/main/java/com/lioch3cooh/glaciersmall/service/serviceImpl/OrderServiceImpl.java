@@ -101,7 +101,7 @@ public class OrderServiceImpl implements OrderService {
             Map<String, Object> result = new HashMap<>();
             result.put("goods", goods);
             result.put("summary", summary);
-            result.put("address", address);
+            result.put("userAddresses", address);
             defaultVoRes = VoResultUnit.getSuccessVoRes(defaultVoRes, result);
         } catch (Exception e) {
             e.printStackTrace();
