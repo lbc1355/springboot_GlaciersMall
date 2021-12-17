@@ -37,4 +37,6 @@ public interface CartDao {
 
     void deleteCart(@Param("skuIds") Map<String, List<Integer>> ids,
                     @Param("memberId") String memberId);
+
+    List<Integer> listSelectedSku(String memberId);
 }

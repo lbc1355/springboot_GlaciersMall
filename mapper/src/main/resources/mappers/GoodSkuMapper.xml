@@ -40,4 +40,26 @@
         from goods_sku
         where id = #{skuId}
     </select>
+
+    <select id="listSkuByMemberId" resultType="java.util.Map">
+        select id,
+               a.sku_id,
+               name,
+               a.price,
+               picture,
+               `count`
+        from (select gs.good_id id,
+                     gs.id      sku_id,
+                     gs.name,
+                     gs.price,
+                     picture
+              from goods_sku gs
+                       left join goods
+                                 on
+                                     gs.good_id = goods.id) a
+                 right join cart
+                            on a.sku_id = cart.sku_id
+        where cart.member_id = #{memberId}
+          and cart.selected = 1
+    </select>
 </mapper>

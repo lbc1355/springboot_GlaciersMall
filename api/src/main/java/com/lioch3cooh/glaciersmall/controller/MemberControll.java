@@ -3,12 +3,8 @@ package com.lioch3cooh.glaciersmall.controller;
 
 import com.lioch3cooh.glaciersmall.entity.RequestBodyEnity.MergeCart;
 import com.lioch3cooh.glaciersmall.service.CartService;
-import com.lioch3cooh.glaciersmall.unity.VoResultUnit;
+import com.lioch3cooh.glaciersmall.service.OrderService;
 import com.lioch3cooh.glaciersmall.vo.VoResult;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.JwtParser;
-import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -98,6 +94,7 @@ public class MemberControll {
 
     /**
      * 全部选中&取消全选
+     *
      * @param payload
      * @param memberId
      * @return
@@ -108,5 +105,21 @@ public class MemberControll {
         Object selected = payload.get("selected");
         Object ids = payload.get("ids");
         return cartService.checkAllCart(selected, ids, memberId);
+    }
+
+
+    /*这里是订单业务*/
+
+    @Autowired
+    private OrderService orderService;
+
+
+    /**
+     * 生成订单
+     * @return
+     */
+    @GetMapping("/order/pre")
+    public VoResult createOrder(@RequestAttribute("memberId") String memberId) {
+        return orderService.createOrder(memberId);
     }
 }

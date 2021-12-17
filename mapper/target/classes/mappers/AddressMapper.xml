@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lioch3cooh.glaciersmall.dao.AddressDao">
+
+
+    <select id="listAddress" resultType="UserAddresses">
+        select id,
+               member_id,
+               receiver,
+               contact,
+               full_location,
+               address,
+               postal_code,
+               address_tags,
+               is_default,
+               province_code,
+               city_code,
+               county_code
+        from user_addresses
+        where member_id = #{memberId}
+    </select>
+</mapper>

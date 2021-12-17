@@ -26,7 +26,6 @@
           and sku_id = #{skuId}
     </select>
 
-
     <insert id="insertCart">
         insert into cart (sku_id, selected, price, `count`, attrs_text, member_id)
         values (#{cart.skuId}, #{cart.selected}, #{cart.price}, #{cart.count}, #{cart.attrsText}, #{cart.memberId})
@@ -39,7 +38,8 @@
             price      = #{cart.price},
             `count`    = #{cart.count},
             attrs_text = #{cart.attrsText}
-        where member_id = #{cart.memberId} and sku_id = #{cart.skuId}
+        where member_id = #{cart.memberId}
+          and sku_id = #{cart.skuId}
     </update>
 
     <delete id="deleteCart">
@@ -52,6 +52,12 @@
         )
         and member_id = #{memberId}
     </delete>
+
+
+    <!--寻找购物车中被选中的物品-->
+    <select id="listSelectedSku" resultType="java.lang.Integer">
+        select sku_id from cart where member_id = #{memberId} and selected = 1
+    </select>
 
 
 </mapper>
