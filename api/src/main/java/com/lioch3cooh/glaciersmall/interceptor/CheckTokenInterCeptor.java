@@ -58,9 +58,10 @@ public class CheckTokenInterCeptor implements HandlerInterceptor {
 
 
     private void doFailResponse(HttpServletResponse response, VoResult failVoRes) throws IOException {
+
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
-
+        response.setStatus(401);
         ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writeValueAsString(failVoRes);
 

@@ -7,6 +7,7 @@ import com.lioch3cooh.glaciersmall.dao.SpecificationsDao;
 import com.lioch3cooh.glaciersmall.entity.Obeans.ProductSkusSpecs;
 import com.lioch3cooh.glaciersmall.entity.UserAddresses;
 import com.lioch3cooh.glaciersmall.service.OrderService;
+import com.lioch3cooh.glaciersmall.unity.SnowFlake;
 import com.lioch3cooh.glaciersmall.unity.VoResultUnit;
 import com.lioch3cooh.glaciersmall.vo.VoResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +108,33 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
         }
 
+        return defaultVoRes;
+    }
+
+    @Override
+    public VoResult submitOrder(Map payload, String memberId) {
+        /*
+         * deliveryTimeType 1  配送时间类型，1为不限，2为工作日，3为双休或假日
+         * payType 1  支付方式，1为在线支付，2为货到付款
+         * payChannel 支付渠道：支付渠道，1支付宝、2微信--支付方式为在线支付时，传值，为货到付款时，不传值
+         * buyerMessage 留言
+         * goods [{skuId=4, count=3}, {skuId=7, count=3}]
+         * addressId 1 所选地址Id
+         */
+        Object deliveryTimeType = payload.get("deliveryTimeType");
+        Object payType = payload.get("payType");
+        Object payChannel = payload.get("payChannel");
+        Object buyerMessage = payload.get("buyerMessage");
+        Object goods = payload.get("goods");
+
+        VoResult defaultVoRes = VoResultUnit.getDefaultVoRes();
+
+        if (deliveryTimeType != null && payType != null &&
+                payChannel != null && buyerMessage != null && goods != null) {
+            SnowFlake snowFlake = new SnowFlake(1, 1);
+
+            String orderId = String.valueOf(snowFlake.nextId());
+        }
         return defaultVoRes;
     }
 

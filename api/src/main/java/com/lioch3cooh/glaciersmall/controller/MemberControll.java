@@ -7,12 +7,16 @@ import com.lioch3cooh.glaciersmall.entity.UserAddresses;
 import com.lioch3cooh.glaciersmall.service.AddressService;
 import com.lioch3cooh.glaciersmall.service.CartService;
 import com.lioch3cooh.glaciersmall.service.OrderService;
+import com.lioch3cooh.glaciersmall.unity.VoResultUnit;
 import com.lioch3cooh.glaciersmall.vo.VoResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @CrossOrigin
 @RestController
@@ -121,7 +125,7 @@ public class MemberControll {
 
 
     /**
-     * 订单 -填写订单
+     * 订单 -结算信息
      *
      * @return
      */
@@ -163,4 +167,41 @@ public class MemberControll {
         return addressService.updateAddress(userAddresses);
     }
 
+
+
+    /* 这里是 支付业务 */
+
+    /**
+     * 提交订单
+     *
+     * @param memberId
+     * @return
+     */
+    @PostMapping("/order")
+    public VoResult submitOrder(@RequestBody Map payload,
+                                @RequestAttribute("memberId") String memberId) {
+
+        return  orderService.submitOrder(payload, memberId);
+    }
+
+    /**
+     * 查询订单详细信息
+     *
+     * @param orderId
+     * @param memberId
+     * @return
+     */
+    @GetMapping("/order/{orderId}")
+    public VoResult findOrderDetail(@PathVariable("orderId") String orderId,
+                                    @RequestAttribute("memberId") String memberId) {
+
+        VoResult voResult = VoResultUnit.getDefaultVoRes();
+
+        Map result = new HashMap();
+        result.put("countdown", 500);
+        result.put("payMoney", 1999.00);
+        voResult.setResult(result);
+
+        return voResult;
+    }
 }

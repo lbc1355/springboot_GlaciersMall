@@ -21,7 +21,7 @@ mybatis:
   type-aliases-package: com.lioch3cooh.glaciersmall.entity
   configuration:
     map-underscore-to-camel-case: true #开启驼峰命名策略
-logging:
-  level:
-    com.lioch3cooh.glaciersmall.dao.GoodsDao: DEBUG
+#logging:
+#  level:
+#    com.lioch3cooh.glaciersmall.dao.GoodsDao: DEBUG
 
