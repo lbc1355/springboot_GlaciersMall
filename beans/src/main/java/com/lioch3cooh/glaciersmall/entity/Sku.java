@@ -17,4 +17,5 @@ public class Sku {
     private Double oldPrice;
     private Integer inventory;
     private Integer isEffective;
+    private Double discount;
 }

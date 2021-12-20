@@ -20,6 +20,7 @@
         where member_id = #{memberId}
     </select>
 
+
     <insert id="insertAddress" useGeneratedKeys="true" keyProperty="id">
         insert into user_addresses (member_id, receiver, contact, full_location, address, postal_code, address_tags,
                                     is_default, province_code, city_code, county_code)
@@ -46,6 +47,24 @@
             county_code   = #{addresses.countyCode}
         where id = #{addresses.id}
     </update>
+
+
+    <select id="queryAddrById" resultType="UserAddresses">
+        select id,
+               member_id,
+               receiver,
+               contact,
+               full_location,
+               address,
+               postal_code,
+               address_tags,
+               is_default,
+               province_code,
+               city_code,
+               county_code
+        from user_addresses
+        where id = #{addressId}
+    </select>
 
 
 </mapper>

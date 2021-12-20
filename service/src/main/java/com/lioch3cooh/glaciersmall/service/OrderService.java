@@ -14,4 +14,9 @@ public interface OrderService {
 
     VoResult submitOrder(Map payload, String memberId);
 
+    VoResult getOrderStatu(String orderId, String memberId);
+
+    void setOrderOverdue(String orderId);
+
+    void setOrderStatus(int i, String orderId);
 }

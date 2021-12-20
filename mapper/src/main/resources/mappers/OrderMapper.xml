@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lioch3cooh.glaciersmall.dao.OrderDao">
+
+    <!--
+
+
+    -->
+    <insert id="insertOrder">
+        insert into `order` (id, member_id, pay_channel, pay_type, order_state, post_fee,
+                             pay_money, total_money, total_num, create_time, pay_time, delivery_time_type,
+                             buyer_message)
+        values (#{order.id}, #{order.memberId}, #{order.payChannel}, #{order.payType}, #{order.orderState},
+                #{order.postFee}, #{order.payMoney}, #{order.totalMoney}, #{order.totalNum}, #{order.createTime},
+                #{order.payTime}, #{order.deliveryTimeTypel}, #{order.buyerMessage})
+
+    </insert>
+
+
+    <insert id="insertAddressSnap">
+        insert into address_snapshot (adress_id, receiver, contact, full_location, address, order_id)
+        values (#{snapshot.adressId}, #{snapshot.receiver}, #{snapshot.contact}, #{snapshot.fullLocation},
+                #{snapshot.address}, #{snapshot.orderId})
+    </insert>
+
+
+    <insert id="insertSkuSnap">
+        insert into sku_snapshot(good_id, sku_id, `name`, price, `count`, picture, order_id, specs_text)
+        values (#{snapshot.goodId}, #{snapshot.skuId}, #{snapshot.name}, #{snapshot.price}, #{snapshot.count},
+                #{snapshot.price}, #{snapshot.orderId}, #{snapshot.specsText})
+
+    </insert>
+    <update id="setOrderTimeout">
+        update `order`
+        set order_state = 2
+        where id = #{orderId}
+    </update>
+    <update id="updateOrderStatus">
+        update `order`
+        set order_state = #{status}
+        where id = #{orderId}
+    </update>
+
+
+    <select id="getOrder" resultType="Order">
+        select id,
+               member_id,
+               pay_channel,
+               pay_type,
+               order_state,
+               post_fee,
+               pay_money,
+               total_money,
+               total_num,
+               create_time,
+               pay_time,
+               delivery_time_type,
+               buyer_message
+        from `order`
+        where id = #{orderId}
+    </select>
+
+
+</mapper>

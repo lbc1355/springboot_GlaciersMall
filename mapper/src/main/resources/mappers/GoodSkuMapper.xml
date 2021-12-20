@@ -3,6 +3,19 @@
 <mapper namespace="com.lioch3cooh.glaciersmall.dao.GoodSkuDao">
 
 
+    <update id="updateSku">
+        update goods_sku
+        set `name`       = #{sku.name},
+            good_id      = #{sku.goodId},
+            price        = #{sku.price},
+            old_price    = #{sku.oldPrice},
+            inventory    = #{sku.inventory},
+            is_effective = #{sku.isEffective},
+            discount     = #{sku.discount}
+        where id = #{sku.id}
+    </update>
+
+
     <select id="listVoSKU" resultType="com.lioch3cooh.glaciersmall.entity.vo.VoSku">
         select gs.id, gs.name, gs.good_id, gs.price, gs.old_price, gs.inventory
         from goods_sku gs
@@ -61,5 +74,20 @@
                             on a.sku_id = cart.sku_id
         where cart.member_id = #{memberId}
           and cart.selected = 1
+    </select>
+
+
+    <select id="getSkuBySkuId" resultType="Sku">
+        select id,
+               `name`,
+               good_id,
+               price,
+               old_price,
+               inventory,
+               is_effective,
+               discount
+        from goods_sku
+        where id = #{skuId}
+
     </select>
 </mapper>

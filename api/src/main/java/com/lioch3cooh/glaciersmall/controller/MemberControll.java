@@ -169,7 +169,7 @@ public class MemberControll {
 
 
 
-    /* 这里是 支付业务 */
+    /* 这里是 订单业务 */
 
     /**
      * 提交订单
@@ -181,11 +181,12 @@ public class MemberControll {
     public VoResult submitOrder(@RequestBody Map payload,
                                 @RequestAttribute("memberId") String memberId) {
 
-        return  orderService.submitOrder(payload, memberId);
+        return orderService.submitOrder(payload, memberId);
     }
 
     /**
-     * 查询订单详细信息
+     *
+     *  支付页面
      *
      * @param orderId
      * @param memberId
@@ -194,14 +195,8 @@ public class MemberControll {
     @GetMapping("/order/{orderId}")
     public VoResult findOrderDetail(@PathVariable("orderId") String orderId,
                                     @RequestAttribute("memberId") String memberId) {
+        VoResult orderStatu = orderService.getOrderStatu(orderId, memberId);
 
-        VoResult voResult = VoResultUnit.getDefaultVoRes();
-
-        Map result = new HashMap();
-        result.put("countdown", 500);
-        result.put("payMoney", 1999.00);
-        voResult.setResult(result);
-
-        return voResult;
+        return orderStatu;
     }
 }

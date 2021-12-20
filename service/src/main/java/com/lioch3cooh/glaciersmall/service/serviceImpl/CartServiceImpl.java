@@ -212,6 +212,7 @@ public class CartServiceImpl implements CartService {
         return defaultVoRes;
     }
 
+
     @Override
     @Transactional(rollbackFor = {Exception.class})
     public VoResult checkAllCart(Object selected, Object ids, String memberId) {
