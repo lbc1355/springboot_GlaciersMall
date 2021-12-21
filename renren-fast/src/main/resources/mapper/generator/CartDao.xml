@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.CartDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.generator.entity.CartEntity" id="cartMap">
+        <result property="skuId" column="sku_id"/>
+        <result property="selected" column="selected"/>
+        <result property="price" column="price"/>
+        <result property="count" column="count"/>
+        <result property="attrsText" column="attrs_text"/>
+        <result property="memberId" column="member_id"/>
+    </resultMap>
+
+
+</mapper>

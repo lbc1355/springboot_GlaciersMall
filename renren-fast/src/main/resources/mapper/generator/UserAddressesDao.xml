@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.UserAddressesDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.generator.entity.UserAddressesEntity" id="userAddressesMap">
+        <result property="id" column="id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="receiver" column="receiver"/>
+        <result property="contact" column="contact"/>
+        <result property="fullLocation" column="full_location"/>
+        <result property="address" column="address"/>
+        <result property="postalCode" column="postal_code"/>
+        <result property="addressTags" column="address_tags"/>
+        <result property="isDefault" column="is_default"/>
+        <result property="provinceCode" column="province_code"/>
+        <result property="cityCode" column="city_code"/>
+        <result property="countyCode" column="county_code"/>
+    </resultMap>
+
+
+</mapper>

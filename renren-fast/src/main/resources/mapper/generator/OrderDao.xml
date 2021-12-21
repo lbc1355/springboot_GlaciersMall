@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.OrderDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.generator.entity.OrderEntity" id="orderMap">
+        <result property="id" column="id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="payChannel" column="pay_channel"/>
+        <result property="payType" column="pay_type"/>
+        <result property="orderState" column="order_state"/>
+        <result property="postFee" column="post_fee"/>
+        <result property="payMoney" column="pay_money"/>
+        <result property="totalMoney" column="total_money"/>
+        <result property="totalNum" column="total_num"/>
+        <result property="createTime" column="create_time"/>
+        <result property="payTime" column="pay_time"/>
+        <result property="deliveryTimeType" column="delivery_time_type"/>
+        <result property="buyerMessage" column="buyer_message"/>
+    </resultMap>
+
+
+</mapper>
